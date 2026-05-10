@@ -18,6 +18,12 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
+                            {% if message %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                            {% endif %}
 							<form method="POST" action="/register" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="name">Name</label>
@@ -32,6 +38,15 @@
 									<input id="email" type="email" class="form-control" name="email" value="" required>
 									<div class="invalid-feedback">
 										Email is invalid
+									</div>
+								</div>
+
+                                
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="email">Username</label>
+									<input id="username" type="text" class="form-control" name="text" value="" required>
+									<div class="invalid-feedback">
+										Username is invalid
 									</div>
 								</div>
 
