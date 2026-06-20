@@ -1,8 +1,47 @@
+import random
 from flask import Flask, redirect, render_template, request, session
-import os
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", 'secret')
+
+
+@app.route('/images')
+def images():
+
+    images = random.sample(
+        range(1, 51), 
+        3
+        )
+    
+    return render_template(
+        'images.html', 
+        images=images
+        )
+
+
+
+
+
+
+@app.route('/table')
+def table():
+    with open('sales.txt', 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    
+    table = []
+    for line in lines:
+        line = line.strip() 
+        if line: 
+            row = line.split(',')
+            table.append(row)
+    
+    return render_template('table.html', table=table)
+
+
+
+
+
+
+
 
 
 USERS = [
@@ -10,7 +49,7 @@ USERS = [
         "id": 1,
         "username": "hasan",
         "name": "Hasan Ahani",
-        "email": "hasanahani.ir@gmail.com",
+        "email": "hasan@gmail.com",
         "password": "1234",  # TODO hash plaintext password
     }
 ]
@@ -33,10 +72,17 @@ def index():
 
     return render_template(
         'index.html',
-     name=user_found['name'],
-     email=user_found['email'],
-     username=user_found['username']
+        name=user_found['name'],
+        email=user_found['email'],
+        username=user_found['username']
      )
+
+
+
+
+
+
+
 
 
 @app.route('/login', methods=["GET", "POST"])

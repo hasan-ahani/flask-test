@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Flask</title>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" >
+</head>
+
+<body>
+	<section>
+		<div class="container">
+			<h1>گزارش فروش محصولات</h1>
+			<div class="subtitle mb-4">
+				عملکرد فروش در ۴ ماهه اول سال 
+			</div>
+			
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							{% for col in table[0] %}
+							<th>{{ col }}</th>
+							{% endfor %}
+						</tr>
+					</thead>
+					<tbody>
+						{% for row in table[1:] %}
+						<tr>
+							{% for cell in row %}
+							<td>
+								{% if loop.first %}
+									<strong>{{ cell }}</strong>
+								{% else %}
+									{{ cell }}
+								{% endif %}
+							</td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	</section>
+
+</body>
+</html>

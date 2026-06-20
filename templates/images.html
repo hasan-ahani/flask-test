@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Flask</title>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" >
+</head>
+
+<body>
+	<section class="py-5">
+			<div class="container">
+				<div class="row g-4">
+					{% for image in images %}
+					<div class="col-md-4">
+						<img class="img-fluid rounded shadow-sm" src="/static/img/{{ image }}.png" alt="image">
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+</body>
+</html>
